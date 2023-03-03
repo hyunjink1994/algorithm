@@ -2,7 +2,6 @@ import sys
 sys.setrecursionlimit(10**7)
 
 
-
 def checkLoad(map_li, i,j, sum, answer):
     dx = [-1,0,1,0]
     dy = [0,1,0,-1]
