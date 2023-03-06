@@ -1,27 +1,27 @@
-def transfer(li):
-    li_c = ['(','[','{','<','>','}',']',')']
-    answer_li = []
-    for i in range(len(li)):
-        for j in range(len(li_c)):
-            if(li[i] == li_c[j]):
-                answer_li.append(j)
-    return answer_li
+def findLoad(startli, endli, answer):
+    visited = []
+    for i in range(len(endli)):
+        for j in range(len(answer)):
+            if (endli[i] == answer[j]):
+                visited.append(startli[i])
+    visited = set(visited)
+    answer = list(visited)
+    if (0 in answer):
+        return answer
+    if (len(answer) == 0):
+        return answer
+    else:
+        return findLoad(startli, endli, answer)
 
-def program(li):
-    for i in range(len(li)-1):
-        if(li[i]+li[i+1] == 7):
-            li.pop(i)
-            li.pop(i)
-            return program(li)
-    return li
 
 N = 10
-for case in range(N):
-    l = int(input())
-    li = input()
-    stack = transfer(li)
-    answer = 0
-    if(len(program(stack)) == 0):
-        answer =1
-    print("#{} {}".format(case+1,answer))
-
+for i in range(N):
+    T, L = map(int, input().split())
+    li = list(map(int, input().split()))
+    start = li[::2]
+    end = li[1::2]
+    answer = [99]
+    ans = 0
+    if (0 in findLoad(start, end, answer)):
+        ans = 1
+    print("#{} {}".format(T, ans))
